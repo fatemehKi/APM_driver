@@ -9,7 +9,7 @@ by Fateme Kiaie
 #include <linux/i2c-dev.h>
 #include <sys/ioctl.h>
 #include <fcntl.h>
-#include <PCA9536.h>
+#include "PCA9536.h"
 
 int main() 
 {
@@ -28,7 +28,7 @@ int main()
 
 	// Select configuration register(0x03)
 	// Set all pins as OUTPUT(0x00)
-	uint8_t APM_ConfigReg[2] =  {0};
+	char Config[2] =  {0};
 	config[0] = 0x03;
 	config[1] = 0x00;
 	writePCA9536(file, config);
