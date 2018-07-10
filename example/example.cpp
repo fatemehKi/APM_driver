@@ -25,15 +25,15 @@ int main()
 
 	// Select configuration register(0x03)
 	// Set all pins as OUTPUT(0x00)
-	char config[2] = {0};
+	uint8_t APM_ConfigReg[2] =  {0};
 	config[0] = 0x03;
 	config[1] = 0x00;
-	write(file, config, 2);
-	sleep(1);
+	writePCA9536(file, config, 2);
+	usleep(1);
 
 	// Select output port register(0x01)
 	// Set pin-1 as HIGH(0x01)
-	char config[2] = {0};
+	/*char config[2] = {0};
 	config[0] = 0x01;
 	config[1] = 0x01;
 	write(file, config, 2);
@@ -71,7 +71,7 @@ int main()
 	config[1] = 0x00;
 	write(file, config, 2);
 	sleep(1);
-	
+	*/
 	// Output to screen
 	printf("Pin-2 state is : LOW");
 }
