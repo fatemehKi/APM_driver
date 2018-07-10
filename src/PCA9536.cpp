@@ -83,13 +83,14 @@ int PCA9536::writePCA9536(int writeRegister, int writeValue)
 }
 
 // Return the current calculated distance in centimeters
+/*
 float PCA9536::getTemp()
 {
  /* float t = read(MCP9808_REG_AMBIENT_TEMP);
   float temp = t & 0x0FFF;
   temp /=  16.0;
   if (t & 0x1000) temp -= 256;
-    return temp;*/
+    return temp;
     
     //float temp = readPCA9536
     
@@ -121,7 +122,7 @@ float PCA9536::getTemp()
 
 return temp ;
     
-}
+}*/
 
 // Return the last i/o error
 int PCA9536::getError()
