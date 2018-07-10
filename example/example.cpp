@@ -9,9 +9,12 @@ by Fateme Kiaie
 #include <linux/i2c-dev.h>
 #include <sys/ioctl.h>
 #include <fcntl.h>
+#include <PCA9536.h>
 
 int main() 
 {
+	
+	PCA9536 *pca9536 = new PCA9536() ;
 	// Create I2C bus
 	int file;
 	char *bus = "/dev/i2c-1";
