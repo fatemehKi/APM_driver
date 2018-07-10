@@ -78,4 +78,5 @@ int main()
 	
 	// Output to screen
 	printf("Pin-2 state is : LOW");*/
+	return 0;
 }
