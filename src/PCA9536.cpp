@@ -18,6 +18,7 @@ PCA9536::~PCA9536()
 bool PCA9536::openPCA9536()
 {
     char fileNameBuffer[32];
+    
     sprintf(fileNameBuffer,"/dev/i2c-%d", kI2CBus);
     kI2CFileDescriptor = open(fileNameBuffer, O_RDWR);
     if (kI2CFileDescriptor < 0) {
@@ -49,7 +50,7 @@ void PCA9536::closePCA9536()
 }
 
 // Read the given register on the Adafruit MCP9808
-int PCA9536::readPCA9536(int readRegister)
+int PCA9536::readPCA9536(char readRegister)
 {
     // Do not use i2c_smbus_read_byte_data here ; PCA9536 V2 needs STOP between write and read
     int toReturn ;
@@ -69,7 +70,7 @@ int PCA9536::readPCA9536(int readRegister)
 
 
 // Write the the given value to the given register on the Adafruit
-int PCA9536::writePCA9536(int writeRegister, int writeValue)
+int PCA9536::writePCA9536(char writeRegister, char writeValue)
 {
     int toReturn = i2c_smbus_write_byte_data(kI2CFileDescriptor, writeRegister, writeValue);
     // Wait a little bit to make sure it settles
