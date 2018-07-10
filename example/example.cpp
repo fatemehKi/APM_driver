@@ -39,7 +39,7 @@ int main()
 	//char config[2] = {0};
 	config[0] = 0x01;
 	config[1] = 0x01;
-	write(file, config);
+	writePCA9536(file, config);
 	usleep(1);
 	
 	// Output to screen
