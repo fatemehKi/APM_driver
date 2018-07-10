@@ -10,7 +10,7 @@ by Fateme Kiaie
 #include <sys/ioctl.h>
 #include <fcntl.h>
 
-void main() 
+int main() 
 {
 	// Create I2C bus
 	int file;
