@@ -69,7 +69,7 @@ int PCA9536::readPCA9536(int readRegister)
 
 
 // Write the the given value to the given register on the Adafruit
-int PCA9536::writePCA9536(int writeRegister, char* writeValue)
+int PCA9536::writePCA9536(int writeRegister, int writeValue)
 {
     int toReturn = i2c_smbus_write_byte_data(kI2CFileDescriptor, writeRegister, writeValue);
     // Wait a little bit to make sure it settles
