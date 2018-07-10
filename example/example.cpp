@@ -15,6 +15,7 @@ int main()
 {
 	
 	PCA9536 *pca9536 = new PCA9536() ;
+	int err = pca9536->openPCA9536();
 	// Create I2C bus
 	int file;
 	char *bus = "/dev/i2c-1";
