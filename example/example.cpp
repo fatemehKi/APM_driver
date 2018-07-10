@@ -28,7 +28,7 @@ int main()
 	uint8_t APM_ConfigReg[2] =  {0};
 	config[0] = 0x03;
 	config[1] = 0x00;
-	writePCA9536(file, config, 2);
+	writePCA9536(file, config);
 	usleep(1);
 
 	// Select output port register(0x01)
