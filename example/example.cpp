@@ -18,14 +18,14 @@ int main()
 	int err = pca9536->openPCA9536();
 	// Create I2C bus
 	int file;
-	char *bus = "/dev/i2c-1";
-	if((file = open(bus, O_RDWR)) < 0) 
-	{
-		printf("Failed to open the bus. \n");
-		exit(1);
-	}
+	//char *bus = "/dev/i2c-1";
+	//if((file = open(bus, O_RDWR)) < 0) 
+	//{
+		//printf("Failed to open the bus. \n");
+		//exit(1);
+	//}
 	// Get I2C device, PCA9536_R11 I2C address is 0x41(65)
-	ioctl(file, I2C_SLAVE, 0x41);
+	//ioctl(file, I2C_SLAVE, 0x41);
 
 	// Select configuration register(0x03)
 	// Set all pins as OUTPUT(0x00)
