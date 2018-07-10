@@ -28,7 +28,7 @@ int main()
 
 	// Select configuration register(0x03)
 	// Set all pins as OUTPUT(0x00)
-	char Config[2] =  {0};
+	char config[2] =  {0};
 	config[0] = 0x03;
 	config[1] = 0x00;
 	writePCA9536(file, config);
