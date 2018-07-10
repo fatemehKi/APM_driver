@@ -32,7 +32,7 @@ int main()
 	int config[2] =  {0};
 	config[0] = 0x03;
 	config[1] = 0x00;
-	int ret = pca9536->writePCA9536(file, config[1]);
+	int ret = pca9536->writePCA9536(file, config[0]);
 	usleep(1);
 
 	// Select output port register(0x01)
