@@ -35,7 +35,7 @@ public:
     bool openPCA9536() ;                   // Open the I2C bus to the PCA9536
     void closePCA9536();                   // Close the I2C bus to the PCA9536
     int getError() ;
-    struct ch_status APM_st_msg;.
+    struct ch_status APM_st_msg;
 
 };
 
