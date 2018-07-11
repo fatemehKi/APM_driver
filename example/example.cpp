@@ -11,7 +11,7 @@ by Fateme Kiaie
 #include <sys/ioctl.h>
 #include <fcntl.h>
 #include <string.h>
-#include "PCA9536.h"
+#include <PCA9536.h>
 
 int main() 
 {
@@ -22,6 +22,7 @@ int main()
 	int err = pca9536->openPCA9536();
 	char fileNameBuffer[32];
 	kI2CFileDescriptor = open(fileNameBuffer, O_RDWR);
+	
 	
 	// Create I2C bus
 	//kI2CFileDescriptor = open(fileNameBuffer, O_RDWR);
