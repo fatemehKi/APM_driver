@@ -35,7 +35,13 @@ public:
     bool openPCA9536() ;                   // Open the I2C bus to the PCA9536
     void closePCA9536();                   // Close the I2C bus to the PCA9536
     int getError() ;
-    struct ch_status APM_st_msg;
+    //struct ch_status APM_st_msg;
+    struct ch_status {
+	int c1_status;
+	int c2_status;
+	int c3_status;
+	int c4_status;
+};
 
 };
 
@@ -87,12 +93,7 @@ void PCA9536::closePCA9536()
     }
 }
 
-struct ch_status {
-	int c1_status;
-	int c2_status;
-	int c3_status;
-	int c4_status;
-}
+
 
 
 //************************************************
@@ -103,6 +104,7 @@ int main()
 	char rxBuffer[32];  // receive buffer
   	char txBuffer[32];  // transmit buffer
 	PCA9536 *pca9536 = new PCA9536() ;
+	struct ch_status APM_st_msg
 	
 	char fileNameBuffer[32];
 	//sprintf(fileNameBuffer,"/dev/i2c-%d", kI2CBus);
