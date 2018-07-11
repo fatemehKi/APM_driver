@@ -33,15 +33,16 @@ int main()
 	// Get I2C device, PCA9536_R11 I2C address is 0x41(65)
 	//ioctl(file, I2C_SLAVE, 0x41);
 	char APM_ConfigReg[2] = {0x03, 0x00};
+	int ret = write(kI2CFileDescriptor, APM_ConfigReg, 2);
 	
 	// Turn on all channels at startup
                 CmdByte &= 0xF0;
 
                 //uint8_t APM_OutputReg[2] = {0x01, 0x00};
-                int APM_OutputReg[2];
+                char APM_OutputReg[2];
                 APM_OutputReg[0] = 0x01;
                 APM_OutputReg[1] = CmdByte;
-	ret = write(kI2CFileDescriptor, config, 2);
+	ret = write(kI2CFileDescriptor, APM_OutputReg, 2);
 	
 	// Select configuration register(0x03)
 	// Set all pins as OUTPUT(0x00)
