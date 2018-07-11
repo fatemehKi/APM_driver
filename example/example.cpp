@@ -35,13 +35,14 @@ public:
     bool openPCA9536() ;                   // Open the I2C bus to the PCA9536
     void closePCA9536();                   // Close the I2C bus to the PCA9536
     int getError() ;
-    //struct ch_status APM_st_msg;
+    int CmdByte;
+    //struct channel status APM_st_msg;
     struct ch_status {
 	int c1_status;
 	int c2_status;
 	int c3_status;
 	int c4_status;
-};
+}; APM_st_msg;
 
 };
 
@@ -93,18 +94,20 @@ void PCA9536::closePCA9536()
     }
 }
 
-
+CmdByte (0x0F){
+	memset (
+}
 
 
 //************************************************
 
 int main() 
 {
-	int CmdByte;
+	int CmdByte(0x0F);
 	char rxBuffer[32];  // receive buffer
   	char txBuffer[32];  // transmit buffer
 	PCA9536 *pca9536 = new PCA9536() ;
-	PCA9536 :: ch_status APM_st_msg;
+	//PCA9536 :: ch_status APM_st_msg;
 	APM_st_msg.c1_status = (CmdByte & 0x01) ? 0 : 1;
 		
 	char fileNameBuffer[32];
@@ -133,7 +136,9 @@ int main()
         APM_OutputReg[0] = 0x01;
         APM_OutputReg[1] = CmdByte;
 	ret = write(I2CFile, APM_OutputReg, 2);
-	APM_st_msg.c1_status = (cmdByte & 0x01) ? 0 : 1;
+	APM_st_msg.c1_status = (CmdByte & 0x01) ? 0 : 1;
+	
+	printf("Pin-1 state is : HIGH");
 	
 	
 	// Select configuration register(0x03)
