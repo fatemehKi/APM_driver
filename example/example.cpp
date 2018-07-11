@@ -98,11 +98,11 @@ int main()
 	char rxBuffer[32];  // receive buffer
   	char txBuffer[32];  // transmit buffer
 	PCA9536 *pca9536 = new PCA9536() ;
-	int err = pca9536->openPCA9536();
+	
 	char fileNameBuffer[32];
 	//sprintf(fileNameBuffer,"/dev/i2c-%d", kI2CBus);
-	//int kI2CFileDescriptor = open(fileNameBuffer, O_RDWR);
-	
+	kI2CFileDescriptor = open(fileNameBuffer, O_RDWR);
+	int err = pca9536->openPCA9536();
 	
 	// Create I2C bus
 	//kI2CFileDescriptor = open(fileNameBuffer, O_RDWR);
