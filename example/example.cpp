@@ -94,9 +94,9 @@ void PCA9536::closePCA9536()
     }
 }
 
-//CmdByte (0x0F){
-//	memset (
-//}
+CmdByte (0x0F){
+	memset(&APM_st_msg, 0, sizeof APM_st_msg);
+}
 
 
 //************************************************
