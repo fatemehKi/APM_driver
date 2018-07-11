@@ -9,6 +9,15 @@ by Fateme Kiaie
 #include <linux/i2c-dev.h>
 #include <sys/ioctl.h>
 #include <fcntl.h>
+#include <errno.h>
+
+
+#include <cstddef>
+#include <cstdlib>
+#include <cstdio>
+#include <unistd.h>
+
+
 //#include <PCA9536.h>
 
 
