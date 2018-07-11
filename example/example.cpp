@@ -20,6 +20,7 @@ int main()
   	char txBuffer[32];  // transmit buffer
 	PCA9536 *pca9536 = new PCA9536() ;
 	int err = pca9536->openPCA9536();
+	char fileNameBuffer[32];
 	kI2CFileDescriptor = open(fileNameBuffer, O_RDWR);
 	
 	// Create I2C bus
