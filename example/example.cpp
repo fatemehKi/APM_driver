@@ -9,7 +9,79 @@ by Fateme Kiaie
 #include <linux/i2c-dev.h>
 #include <sys/ioctl.h>
 #include <fcntl.h>
-#include <PCA9536.h>
+//#include <PCA9536.h>
+
+
+#define kPCA9536I2CAddress                    0x41
+
+
+class PCA9536
+{
+public:
+    unsigned char kI2CBus ;         // I2C bus of the PCA9536
+    int kI2CFileDescriptor ;        // File Descriptor to the PCA9536
+    int error ;
+    PCA9536();
+    ~PCA9536() ;
+    bool openPCA9536() ;                   // Open the I2C bus to the PCA9536
+    void closePCA9536();                   // Close the I2C bus to the PCA9536
+  
+    int getError() ;
+
+};
+
+
+PCA9536::PCA9536()
+{
+    kI2CBus = 1 ;           // Default I2C bus on Jetson TK1
+    error = 0 ;
+}
+
+PCA9536::~PCA9536()
+{
+    closePCA9536() ;
+}
+
+// Returns true if device file descriptor opens correctly, false otherwise
+
+bool PCA9536::openPCA9536()
+{
+    char fileNameBuffer[32];
+    
+    sprintf(fileNameBuffer,"/dev/i2c-%d", kI2CBus);
+    kI2CFileDescriptor = open(fileNameBuffer, O_RDWR);
+    if (kI2CFileDescriptor < 0) {
+        // Could not open the file
+        error = errno ;
+        printf("Error: %d",  error);
+        printf("Can not open the file");
+
+        return false ;
+    }
+    if (ioctl(kI2CFileDescriptor, I2C_SLAVE, kPCA9536I2CAddress) < 0) {
+        // Could not open the device on the bus
+        error = errno ;
+        
+        printf("Error: %d",  error);
+        printf("Can not open the device on the bus");
+        return false ;
+    }
+    return true ;
+}
+
+void PCA9536::closePCA9536()
+{
+    if (kI2CFileDescriptor > 0) {
+        close(kI2CFileDescriptor);
+        // WARNING - This is not quite right, need to check for error first
+        kI2CFileDescriptor = -1 ;
+    }
+}
+
+
+
+
+//************************************************
 
 int main() 
 {
@@ -19,7 +91,8 @@ int main()
 	PCA9536 *pca9536 = new PCA9536() ;
 	int err = pca9536->openPCA9536();
 	char fileNameBuffer[32];
-	int kI2CFileDescriptor = open(fileNameBuffer, O_RDWR);
+	//sprintf(fileNameBuffer,"/dev/i2c-%d", kI2CBus);
+	//int kI2CFileDescriptor = open(fileNameBuffer, O_RDWR);
 	
 	
 	// Create I2C bus
