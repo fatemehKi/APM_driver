@@ -34,8 +34,8 @@ public:
     ~PCA9536() ;
     bool openPCA9536() ;                   // Open the I2C bus to the PCA9536
     void closePCA9536();                   // Close the I2C bus to the PCA9536
-  
     int getError() ;
+    struct ch_status APM_st_msg;.
 
 };
 
@@ -87,7 +87,12 @@ void PCA9536::closePCA9536()
     }
 }
 
-
+struct ch_status {
+	int c1_status;
+	int c2_status;
+	int c3_status;
+	int c4_status;
+}
 
 
 //************************************************
@@ -118,13 +123,15 @@ int main()
 	int ret = write(I2CFile, APM_ConfigReg, 2);
 	
 	// Turn on all channels at startup
-                CmdByte &= 0xF0;
+        CmdByte &= 0xF0;
 
-                //uint8_t APM_OutputReg[2] = {0x01, 0x00};
-                char APM_OutputReg[2];
-                APM_OutputReg[0] = 0x01;
-                APM_OutputReg[1] = CmdByte;
+         //uint8_t APM_OutputReg[2] = {0x01, 0x00};
+        char APM_OutputReg[2];
+        APM_OutputReg[0] = 0x01;
+        APM_OutputReg[1] = CmdByte;
 	ret = write(I2CFile, APM_OutputReg, 2);
+	APM_st_msg.c1_status = (cmdByte & 0x01) ? 0 : 1;
+	
 	
 	// Select configuration register(0x03)
 	// Set all pins as OUTPUT(0x00)
@@ -136,14 +143,14 @@ int main()
 
 	// Select output port register(0x01)
 	// Set pin-1 as HIGH(0x01)
-	char config[2] = {0};
-	config[0] = 0x01;
-	config[1] = 0x01;
+	//char config[2] = {0};
+	//config[0] = 0x01;
+	//config[1] = 0x01;
 	//ret = pca9536->writePCA9536(kI2CFileDescriptor, config[1]);
-	usleep(1);
+	//usleep(1);
 	
 	// Output to screen
-	printf("Pin-1 state is : HIGH");
+	//printf("Pin-1 state is : HIGH");
 	
 	/*
 	// Select output port register(0x01)
