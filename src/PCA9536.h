@@ -46,8 +46,8 @@ public:
     ~PCA9536() ;
     bool openPCA9536() ;                   // Open the I2C bus to the PCA9536
     void closePCA9536();                   // Close the I2C bus to the PCA9536
-   int writePCA9536(int writeRegister,int writeValue) ;
-    int readPCA9536(int readRegister) ;
+  // int writePCA9536(int writeRegister,int writeValue) ;
+   // int readPCA9536(int readRegister) ;
     float getTemp();
     //int getTemp() ;
 
