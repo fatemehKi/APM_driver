@@ -101,7 +101,7 @@ int main()
 	
 	char fileNameBuffer[32];
 	//sprintf(fileNameBuffer,"/dev/i2c-%d", kI2CBus);
-	kI2CFileDescriptor = open(fileNameBuffer, O_RDWR);
+	int I2CFile= open(fileNameBuffer, O_RDWR);
 	int err = pca9536->openPCA9536();
 	
 	// Create I2C bus
@@ -115,7 +115,7 @@ int main()
 	// Get I2C device, PCA9536_R11 I2C address is 0x41(65)
 	//ioctl(file, I2C_SLAVE, 0x41);
 	char APM_ConfigReg[2] = {0x03, 0x00};
-	int ret = write(kI2CFileDescriptor, APM_ConfigReg, 2);
+	int ret = write(I2CFile, APM_ConfigReg, 2);
 	
 	// Turn on all channels at startup
                 CmdByte &= 0xF0;
@@ -124,7 +124,7 @@ int main()
                 char APM_OutputReg[2];
                 APM_OutputReg[0] = 0x01;
                 APM_OutputReg[1] = CmdByte;
-	ret = write(kI2CFileDescriptor, APM_OutputReg, 2);
+	ret = write(I2CFile, APM_OutputReg, 2);
 	
 	// Select configuration register(0x03)
 	// Set all pins as OUTPUT(0x00)
