@@ -48,7 +48,7 @@ void PCA9536::closePCA9536()
         kI2CFileDescriptor = -1 ;
     }
 }
-
+/*
 // Read the given register on the Adafruit MCP9808
 int PCA9536::readPCA9536(char readRegister)
 {
@@ -68,7 +68,6 @@ int PCA9536::readPCA9536(char readRegister)
 }
 
 
-
 // Write the the given value to the given register on the Adafruit
 int PCA9536::writePCA9536(char writeRegister, char writeValue)
 {
@@ -81,7 +80,8 @@ int PCA9536::writePCA9536(char writeRegister, char writeValue)
     }
     return toReturn ;
 
-}
+}*/
+
 
 // Return the current calculated distance in centimeters
 /*
