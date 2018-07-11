@@ -13,11 +13,14 @@ by Fateme Kiaie
 
 int main() 
 {
-	
+	int CmdByte;
+	char rxBuffer[32];  // receive buffer
+  	char txBuffer[32];  // transmit buffer
 	PCA9536 *pca9536 = new PCA9536() ;
 	int err = pca9536->openPCA9536();
+	
 	// Create I2C bus
-	int file;
+	//kI2CFileDescriptor = open(fileNameBuffer, O_RDWR);
 	//char *bus = "/dev/i2c-1";
 	//if((file = open(bus, O_RDWR)) < 0) 
 	//{
@@ -26,13 +29,23 @@ int main()
 	//}
 	// Get I2C device, PCA9536_R11 I2C address is 0x41(65)
 	//ioctl(file, I2C_SLAVE, 0x41);
+	char APM_ConfigReg[2] = {0x03, 0x00};
+	
+	// Turn on all channels at startup
+                CmdByte &= 0xF0;
 
+                //uint8_t APM_OutputReg[2] = {0x01, 0x00};
+                int APM_OutputReg[2];
+                APM_OutputReg[0] = 0x01;
+                APM_OutputReg[1] = CmdByte;
+	ret = write(kI2CFileDescriptor, config, 2);
+	
 	// Select configuration register(0x03)
 	// Set all pins as OUTPUT(0x00)
-	int config[2] =  {0};
-	config[0] = 0x03;
-	config[1] = 0x00;
-	int ret = pca9536->writePCA9536(file, config[0]);
+	//////////int config[2] =  {0};
+	//////////config[0] = 0x03;
+	//////////config[1] = 0x00;
+	//////////int ret = pca9536->writePCA9536(kI2CFileDescriptor, config[0]);
 	usleep(1);
 
 	// Select output port register(0x01)
@@ -40,7 +53,7 @@ int main()
 	//char config[2] = {0};
 	config[0] = 0x01;
 	config[1] = 0x01;
-	ret = pca9536->writePCA9536(file, config[1]);
+	ret = pca9536->writePCA9536(kI2CFileDescriptor, config[1]);
 	usleep(1);
 	
 	// Output to screen
