@@ -104,7 +104,7 @@ int main()
 	char rxBuffer[32];  // receive buffer
   	char txBuffer[32];  // transmit buffer
 	PCA9536 *pca9536 = new PCA9536() ;
-	struct ch_status APM_st_msg;
+	ch_status APM_st_msg;
 	
 	char fileNameBuffer[32];
 	//sprintf(fileNameBuffer,"/dev/i2c-%d", kI2CBus);
