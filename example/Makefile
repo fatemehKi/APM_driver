@@ -1,2 +1,2 @@
 all:
-	g++ example.cpp -I../src -o example
+	g++ example.cpp -o example
