@@ -136,7 +136,7 @@ int main()
         APM_OutputReg[0] = 0x01;
         APM_OutputReg[1] = CmdByte;
 	ret = write(I2CFile, APM_OutputReg, 2);
-	APM_st_msg.c1_status = (CmdByte & 0x01) ? 0 : 1;
+	pca9536->APM_st_msg.c1_status = (CmdByte & 0x01) ? 0 : 1;
 	
 	printf("Pin-1 state is : HIGH");
 	
