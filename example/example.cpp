@@ -42,7 +42,7 @@ public:
 	int c2_status;
 	int c3_status;
 	int c4_status;
-}; APM_st_msg;
+} APM_st_msg;
 
 };
 
