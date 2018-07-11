@@ -57,7 +57,7 @@ int main()
 	char config[2] = {0};
 	config[0] = 0x01;
 	config[1] = 0x01;
-	ret = pca9536->writePCA9536(kI2CFileDescriptor, config[1]);
+	//ret = pca9536->writePCA9536(kI2CFileDescriptor, config[1]);
 	usleep(1);
 	
 	// Output to screen
