@@ -120,7 +120,7 @@ int main()
 	
 
 	// Get I2C device, PCA9536_R11 I2C address is 0x41(65)
-	//ioctl(file, I2C_SLAVE, 0x41);
+	ioctl(I2CFile, I2C_SLAVE, 0x41);
 	char APM_ConfigReg[2] = {0x03, 0x00};
 	int ret = write(I2CFile, APM_ConfigReg, 2);
 	
