@@ -118,14 +118,7 @@ int main()
 	int I2CFile= open(fileNameBuffer, O_RDWR);
 	int err = pca9536->openPCA9536();
 	
-	// Create I2C bus
-	//kI2CFileDescriptor = open(fileNameBuffer, O_RDWR);
-	//char *bus = "/dev/i2c-1";
-	//if((file = open(bus, O_RDWR)) < 0) 
-	//{
-		//printf("Failed to open the bus. \n");
-		//exit(1);
-	//}
+
 	// Get I2C device, PCA9536_R11 I2C address is 0x41(65)
 	//ioctl(file, I2C_SLAVE, 0x41);
 	char APM_ConfigReg[2] = {0x03, 0x00};
@@ -141,7 +134,7 @@ int main()
 	ret = write(I2CFile, APM_OutputReg, 2);
 	pca9536->APM_st_msg.c1_status = (CmdByte & 0x01) ? 0 : 1;
 	
-	printf("Pin-1 state is : HIGH");
+	printf("Pin-1 state is : %d", pca9536->APM_st_msg.c1_status);
 	
 	
 	// Select configuration register(0x03)
