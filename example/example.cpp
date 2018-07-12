@@ -124,7 +124,7 @@ int main()
 	//Writing on Configuration to configure all as an output
 	int ret = pca9536->writePCA9536(0x03, 0x00);
 	
-	usleep(10000);
+	usleep(100);
 		
 	// Turn on all channels at startup
         CmdByte &= 0xF0;
@@ -142,8 +142,10 @@ int main()
 	//////////config[0] = 0x03;
 	//////////config[1] = 0x00;
 	//////////int ret = pca9536->writePCA9536(kI2CFileDescriptor, config[0]);
-	usleep(1);
+	usleep(100);
 
+	ret = pca9536->writePCA9536(0x01, 0x01);
+	usleep(100);
 	// Select output port register(0x01)
 	// Set pin-1 as HIGH(0x01)
 	//char config[2] = {0};
