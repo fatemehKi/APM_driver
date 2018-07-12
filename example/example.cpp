@@ -17,10 +17,7 @@ by Fateme Kiaie
 #include <cstdio>
 #include <unistd.h>
 
-
-//#include <PCA9536.h>
-
-
+//I2C address of PCA9536
 #define kPCA9536I2CAddress                    0x41
 
 
@@ -36,8 +33,6 @@ public:
     void closePCA9536();                   // Close the I2C bus to the PCA9536
    int writePCA9536(int writeRegister, int writeValue);
    int getError() ;
-    //int CmdByte;
-    //struct channel status APM_st_msg;
     struct ch_status {
 	int c1_status;
 	int c2_status;
@@ -107,37 +102,26 @@ void PCA9536::closePCA9536()
         kI2CFileDescriptor = -1 ;
     }
 }
-/*
-int PCA9536::CmdByte(0x0F){
-	memset(&APM_st_msg, 0, sizeof APM_st_msg);
-	return 0;
-}
-*/
+
 
 //************************************************
 
 int main() 
 {
 	int CmdByte(0x0F);
-	//memset(pca9536-> &APM_st_msg, 0, sizeof pca9536->APM_st_msg);
-	//char rxBuffer[32];  // receive buffer
-  	//char txBuffer[32];  // transmit buffer
-	PCA9536 *pca9536 = new PCA9536() ;
-	//PCA9536 :: ch_status APM_st_msg;
-	//APM_st_msg.c1_status = (CmdByte & 0x01) ? 0 : 1;
 	
-		
+	PCA9536 *pca9536 = new PCA9536() ;
+			
 	char fileNameBuffer[32];
-	//sprintf(fileNameBuffer,"/dev/i2c-%d", kI2CBus);
+	
 	int I2CFile= open(fileNameBuffer, O_RDWR);
 	int err = pca9536->openPCA9536();
 	
 
-	// Get I2C device, PCA9536_R11 I2C address is 0x41(65)
-	ioctl(I2CFile, I2C_SLAVE, 0x41);
-	//char APM_ConfigReg[2] = {0x03, 0x00};
-	//int toReturn = i2c_smbus_write_byte_data(0x41, 0x03, 0xFF);
-	//int ret = write(I2CFile, APM_ConfigReg, 2);
+	// Get I2C device, PCA9536 I2C address is 0x41(65)
+	ioctl(I2CFile, I2C_SLAVE, kPCA9536I2CAddress);
+	
+	//Writing on Configuration to configure all as an output
 	int ret = pca9536->writePCA9536(0x03, 0x00);
 	
 	usleep(10000);
@@ -145,13 +129,7 @@ int main()
 	// Turn on all channels at startup
         CmdByte &= 0xF0;
 
-         //uint8_t APM_OutputReg[2] = {0x01, 0x00};
-        char APM_OutputReg[2];
-        APM_OutputReg[0] = 0x01;
-        APM_OutputReg[1] = CmdByte;
-	//APM_OutputReg[1] = 0x00;
-	//ret = write(I2CFile, APM_OutputReg, 2);
-	//toReturn = i2c_smbus_write_byte_data(0x41, 0x03, 0xFF);
+       
 	ret = pca9536->writePCA9536(0x01, 0xF0);
 	pca9536->APM_st_msg.c1_status = (CmdByte & 0x01) ? 0 : 1;
 	
