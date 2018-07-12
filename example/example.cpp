@@ -121,9 +121,11 @@ int main()
 
 	// Get I2C device, PCA9536_R11 I2C address is 0x41(65)
 	ioctl(I2CFile, I2C_SLAVE, 0x41);
-	char APM_ConfigReg[2] = {0x03, 0x00};
-	int ret = write(I2CFile, APM_ConfigReg, 2);
-	
+	//char APM_ConfigReg[2] = {0x03, 0x00};
+	int toReturn = i2c_smbus_write_byte_data(0x41, 0x03, 0xFF);
+	//int ret = write(I2CFile, APM_ConfigReg, 2);
+	usleep(10000);
+		
 	// Turn on all channels at startup
         CmdByte &= 0xF0;
 
@@ -132,7 +134,8 @@ int main()
         APM_OutputReg[0] = 0x01;
         APM_OutputReg[1] = CmdByte;
 	//APM_OutputReg[1] = 0x00;
-	ret = write(I2CFile, APM_OutputReg, 2);
+	//ret = write(I2CFile, APM_OutputReg, 2);
+	toReturn = i2c_smbus_write_byte_data(0x41, 0x03, 0xFF);
 	pca9536->APM_st_msg.c1_status = (CmdByte & 0x01) ? 0 : 1;
 	
 	printf("Pin-1 state is : %d", pca9536->APM_st_msg.c1_status);
