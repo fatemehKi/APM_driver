@@ -85,6 +85,19 @@ bool PCA9536::openPCA9536()
     return true ;
 }
 
+int AdafruitMCP9808::writeAdafruitMCP9808(int writeRegister, int writeValue)
+{
+    int toReturn = i2c_smbus_write_byte_data(kI2CFileDescriptor, writeRegister, writeValue);
+    // Wait a little bit to make sure it settles
+    usleep(10000);
+    if (toReturn < 0) {
+        error = errno ;
+        toReturn = -1 ;
+    }
+    return toReturn ;
+
+}
+
 void PCA9536::closePCA9536()
 {
     if (kI2CFileDescriptor > 0) {
