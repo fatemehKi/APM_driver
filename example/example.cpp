@@ -105,12 +105,13 @@ int PCA9536::CmdByte(0x0F){
 int main() 
 {
 	int CmdByte(0x0F);
-	memset(&APM_st_msg, 0, sizeof APM_st_msg);
+	memset(&pca9536->APM_st_msg, 0, sizeof pca9536->APM_st_msg);
 	char rxBuffer[32];  // receive buffer
   	char txBuffer[32];  // transmit buffer
 	PCA9536 *pca9536 = new PCA9536() ;
 	//PCA9536 :: ch_status APM_st_msg;
 	//APM_st_msg.c1_status = (CmdByte & 0x01) ? 0 : 1;
+	
 		
 	char fileNameBuffer[32];
 	//sprintf(fileNameBuffer,"/dev/i2c-%d", kI2CBus);
