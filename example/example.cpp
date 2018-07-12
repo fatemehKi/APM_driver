@@ -130,10 +130,10 @@ int main()
          //uint8_t APM_OutputReg[2] = {0x01, 0x00};
         char APM_OutputReg[2];
         APM_OutputReg[0] = 0x01;
-        //APM_OutputReg[1] = CmdByte;
-	APM_OutputReg[1] = 0x00;
+        APM_OutputReg[1] = CmdByte;
+	//APM_OutputReg[1] = 0x00;
 	ret = write(I2CFile, APM_OutputReg, 2);
-	//pca9536->APM_st_msg.c1_status = (CmdByte & 0x01) ? 0 : 1;
+	pca9536->APM_st_msg.c1_status = (CmdByte & 0x01) ? 0 : 1;
 	
 	printf("Pin-1 state is : %d", pca9536->APM_st_msg.c1_status);
 	
