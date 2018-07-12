@@ -10,7 +10,7 @@ by Fateme Kiaie
 #include <sys/ioctl.h>
 #include <fcntl.h>
 #include <errno.h>
-
+#include <string.h>
 
 #include <cstddef>
 #include <cstdlib>
@@ -105,7 +105,7 @@ int PCA9536::CmdByte(0x0F){
 int main() 
 {
 	int CmdByte(0x0F);
-	memset(pca9536->APM_st_msg, 0, sizeof pca9536->APM_st_msg);
+	memset(pca9536-> &APM_st_msg, 0, sizeof pca9536->APM_st_msg);
 	char rxBuffer[32];  // receive buffer
   	char txBuffer[32];  // transmit buffer
 	PCA9536 *pca9536 = new PCA9536() ;
