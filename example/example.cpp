@@ -34,7 +34,8 @@ public:
     ~PCA9536() ;
     bool openPCA9536() ;                   // Open the I2C bus to the PCA9536
     void closePCA9536();                   // Close the I2C bus to the PCA9536
-    int getError() ;
+   int writePCA9536(int writeRegister, int writeValue);
+   int getError() ;
     //int CmdByte;
     //struct channel status APM_st_msg;
     struct ch_status {
@@ -85,7 +86,7 @@ bool PCA9536::openPCA9536()
     return true ;
 }
 
-int AdafruitMCP9808::writeAdafruitMCP9808(int writeRegister, int writeValue)
+int PCA9536::writePCA9536(int writeRegister, int writeValue)
 {
     int toReturn = i2c_smbus_write_byte_data(kI2CFileDescriptor, writeRegister, writeValue);
     // Wait a little bit to make sure it settles
