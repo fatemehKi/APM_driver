@@ -106,8 +106,8 @@ int main()
 {
 	int CmdByte(0x0F);
 	//memset(pca9536-> &APM_st_msg, 0, sizeof pca9536->APM_st_msg);
-	char rxBuffer[32];  // receive buffer
-  	char txBuffer[32];  // transmit buffer
+	//char rxBuffer[32];  // receive buffer
+  	//char txBuffer[32];  // transmit buffer
 	PCA9536 *pca9536 = new PCA9536() ;
 	//PCA9536 :: ch_status APM_st_msg;
 	//APM_st_msg.c1_status = (CmdByte & 0x01) ? 0 : 1;
@@ -132,7 +132,7 @@ int main()
         APM_OutputReg[0] = 0x01;
         APM_OutputReg[1] = CmdByte;
 	ret = write(I2CFile, APM_OutputReg, 2);
-	pca9536->APM_st_msg.c1_status = (CmdByte & 0x01) ? 0 : 1;
+	//pca9536->APM_st_msg.c1_status = (CmdByte & 0x01) ? 0 : 1;
 	
 	printf("Pin-1 state is : %d", pca9536->APM_st_msg.c1_status);
 	
