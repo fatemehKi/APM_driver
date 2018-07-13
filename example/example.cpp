@@ -130,7 +130,7 @@ int main()
         CmdByte &= 0xF0;
 
        
-	ret = pca9536->writePCA9536(0x00, 0x01);
+	ret = pca9536->writePCA9536(0x01, 0x01);
 	pca9536->APM_st_msg.c1_status = (CmdByte & 0x01) ? 0 : 1;
 	
 	printf("Pin-1 state is : %d", pca9536->APM_st_msg.c1_status);
