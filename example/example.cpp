@@ -144,7 +144,7 @@ int main()
 	//////////int ret = pca9536->writePCA9536(kI2CFileDescriptor, config[0]);
 	usleep(100);
 
-	ret = pca9536->writePCA9536(0x01, 0x01);
+	ret = pca9536->writePCA9536(0x01, 0x00);
 	usleep(100);
 	// Select output port register(0x01)
 	// Set pin-1 as HIGH(0x01)
