@@ -146,7 +146,7 @@ int main()
 
 	ret = pca9536->writePCA9536(0x03, 0x00);
 	usleep(1);
-	ret = pca9536->writePCA9536(0x01, 0x00);
+	ret = pca9536->writePCA9536(0x00, 0x00);
 	// Select output port register(0x01)
 	// Set pin-1 as HIGH(0x01)
 	//char config[2] = {0};
