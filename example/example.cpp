@@ -130,7 +130,7 @@ int main()
         CmdByte &= 0xF0;
 
        
-	ret = pca9536->writePCA9536(0x01, 0xF0);
+	//ret = pca9536->writePCA9536(0x01, 0xF0);
 	pca9536->APM_st_msg.c1_status = (CmdByte & 0x01) ? 0 : 1;
 	
 	printf("Pin-1 state is : %d", pca9536->APM_st_msg.c1_status);
@@ -144,9 +144,9 @@ int main()
 	//////////int ret = pca9536->writePCA9536(kI2CFileDescriptor, config[0]);
 	usleep(1);
 
-	ret = pca9536->writePCA9536(0x03, 0x00);
+	//ret = pca9536->writePCA9536(0x03, 0x00);
 	usleep(1);
-	ret = pca9536->writePCA9536(0x00, 0x00);
+	ret = pca9536->writePCA9536(0x00, 0x01);
 	// Select output port register(0x01)
 	// Set pin-1 as HIGH(0x01)
 	//char config[2] = {0};
