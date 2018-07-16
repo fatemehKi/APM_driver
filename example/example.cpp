@@ -143,7 +143,7 @@ int main()
 	
 
 	// Get I2C device, PCA9536 I2C address is 0x41(65)
-	ioctl(I2CFile, I2C_SLAVE, kPCA9536I2CAddress);
+	//ioctl(I2CFile, I2C_SLAVE, kPCA9536I2CAddress);
 	
 	ret = pca9536->writePCA9536(0x03, 0x00);
 	ret = pca9536->writePCA9536(0x01, 0xFF);
