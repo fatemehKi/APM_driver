@@ -124,7 +124,7 @@ int main()
 	//Writing on Configuration to configure all as an output
 	int ret = pca9536->writePCA9536(0x03, 0x00);
 	
-	usleep(100);
+	usleep(1);
 		
 	// Turn on all channels at startup
         CmdByte &= 0xF0;
@@ -136,7 +136,7 @@ int main()
 	printf("Pin-1 state is : %d", pca9536->APM_st_msg.c1_status);
 	
 	
-	usleep(2000);
+	usleep(1);
 	//turn off all channel
 	ret = pca9536->writePCA9536(0x03, 0x00);
 	ret = pca9536->writePCA9536(0x01, 0xFF);
