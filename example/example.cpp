@@ -136,9 +136,9 @@ int main()
 	printf("Pin-1 state is : %d", pca9536->APM_st_msg.c1_status);
 	
 	
-	usleep(1);
+	usleep(2000);
 	//turn off all channel
-	//ret = pca9536->writePCA9536(0x01, 0xFF);
+	ret = pca9536->writePCA9536(0x01, 0xFF);
 	// Select configuration register(0x03)
 	// Set all pins as OUTPUT(0x00)
 	//////////int config[2] =  {0};
