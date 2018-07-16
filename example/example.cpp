@@ -124,7 +124,7 @@ int main()
 	//Writing on Configuration to configure all as an output
 	int ret = pca9536->writePCA9536(0x03, 0x00);
 	
-	sleep(1000);
+	//sleep(1000);
 		
 	// Turn on all channels at startup
         CmdByte &= 0xF0;
