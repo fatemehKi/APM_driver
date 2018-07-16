@@ -136,7 +136,7 @@ int main()
 	printf("Pin-1 state is : %d", pca9536->APM_st_msg.c1_status);
 	
 	
-	sleep(1000000);
+	sleep(1000);
 	//turn off all channel
 	
 	 //err = pca9536->openPCA9536();
