@@ -138,6 +138,7 @@ int main()
 	
 	usleep(2000);
 	//turn off all channel
+	ret = pca9536->writePCA9536(0x03, 0x00);
 	ret = pca9536->writePCA9536(0x01, 0xFF);
 	// Select configuration register(0x03)
 	// Set all pins as OUTPUT(0x00)
