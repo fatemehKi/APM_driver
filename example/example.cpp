@@ -130,13 +130,13 @@ int main()
         CmdByte &= 0xF0;
 
        
-	ret = pca9536->writePCA9536(0x01, 0x01);
+	ret = pca9536->writePCA9536(0x01, 0xF0);
 	//pca9536->APM_st_msg.c1_status = (CmdByte & 0x01) ? 0 : 1;
 	
 	printf("Pin-1 state is : %d", pca9536->APM_st_msg.c1_status);
 	
 	
-	usleep(1000);
+	usleep(2000);
 	//turn off all channel
 	ret = pca9536->writePCA9536(0x01, 0xFF);
 	// Select configuration register(0x03)
